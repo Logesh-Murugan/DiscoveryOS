@@ -1,0 +1,7 @@
+raw_content,type,segment,use_case
+"Customer reports that bulk export feature times out when trying to export more than 100k records. They need to export their quarterly reports but the operation fails consistently.",support_ticket,Enterprise,Analytics
+"Small team frustrated that there's no API documentation for the new analytics endpoints. They've spent two days trying to reverse-engineer the correct request format.",support_ticket,SMB,Integration
+"Support request: user can't reset their password and is locked out. Reset email button doesn't send anything. This is a critical blocker for their team.",support_ticket,Enterprise,General
+"Customer wants dark mode for the dashboard. They say their team works late nights and the bright UI causes eye strain. Not a blocker but requested by 3+ users from their org.",support_ticket,SMB,General
+"Enterprise customer reports that real-time collaboration feature is lagging. When multiple people edit the same document, changes take 10-15 seconds to sync. Defeats the purpose of 'real-time'.",support_ticket,Enterprise,Collaboration
+"Startup asks if there's a bulk delete feature. Currently they have to manually delete records one at a time, which takes hours. They're considering switching because of this inefficiency.",support_ticket,SMB,Data-Management

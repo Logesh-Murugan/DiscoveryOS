@@ -1,0 +1,27 @@
+ACME Corp Interview - January 15, 2024
+Customer: Sarah Chen, Product Manager
+Duration: 42 minutes
+
+Interview Notes:
+
+Sarah opened by saying their team is really happy with our platform overall, but she's been getting a lot of feedback from her engineering team about one major pain point.
+
+Key Problem: API Rate Limiting
+Sarah explained that their developers are constantly hitting the 1000 requests/minute rate limit on the API. She said "It's honestly frustrating because we only have 50 engineers, but our integration is making what feels like thousands of requests in batch operations. Every time we do a daily sync of customer data, we have to stagger it over 3 hours to avoid getting throttled."
+
+The issue is that their system makes many small API calls instead of larger batch requests (which they can't do with the current API design). Sarah mentioned they looked at other platforms and some offer 10,000 requests/minute for enterprise customers.
+
+Impact:
+- Slows down their daily sync process from 30 minutes to 3+ hours
+- Requires manual monitoring to avoid hitting limits
+- Developers spend time on workarounds instead of building features
+- They're evaluating alternatives that offer higher limits without additional cost
+
+Other minor issues mentioned:
+- Webhook retry logic sometimes fails silently
+- No way to check rate limit status before hitting the limit
+- Documentation on rate limiting is sparse
+
+Sarah said if we could increase the limit for enterprise customers or provide better tooling to manage it, they'd be much happier. She specifically mentioned: "You guys have a great product, but the rate limiting is making us waste engineering time that we could spend on actual innovation."
+
+Her timeline: They need a solution within 60 days or they'll seriously consider switching to a competitor.

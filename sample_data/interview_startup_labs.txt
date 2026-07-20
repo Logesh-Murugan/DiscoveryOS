@@ -1,0 +1,33 @@
+Startup Labs Customer Interview - January 18, 2024
+Customer: Marcus Wong, CTO
+Duration: 28 minutes
+
+Interview Notes:
+
+Marcus called in and was very enthusiastic about the product overall. However, he brought up a critical issue that's been blocking his team's ability to scale.
+
+Main Pain Point: User Permissions & Role-Based Access Control (RBAC)
+Marcus said: "The permission system is way too basic for what we need. Right now we can only assign one role per user, and we have no way to grant specific permissions to specific resources. Every team member has to have the same access level or we have to create custom workarounds."
+
+He explained that they have:
+- 8 developers with admin access (they only need this for deployments)
+- 15 analysts who should only see their own team's data
+- 3 finance people who need access to billing reports but not to user data
+- 2 support staff who need to view customer accounts but can't modify anything
+
+Current situation: They can't properly implement their internal access structure, so they're storing access control in a separate database and manually syncing it. Marcus said: "It's a mess. We have a second system just to manage permissions because your RBAC is too limited."
+
+Business Impact:
+- Security risk: harder to prevent unauthorized access
+- Compliance issue: can't demonstrate proper access controls to clients
+- Engineering overhead: maintaining duplicate permission system
+- Scaling blocker: can't onboard new team members safely without overprivileging them
+
+Marcus mentioned they've looked at competitors and most support at least role inheritance and resource-level permissions. He said: "We'd probably stay with you forever if this was fixed. We love your feature set otherwise, but this permission issue is becoming a real liability."
+
+Secondary complaints:
+- Audit logs don't show which user made which change
+- No way to revoke all access for a user instantly
+- Bulk user management is missing
+
+Timeline: They'll need this within 90 days or will start migrating to a different platform that has proper RBAC.
