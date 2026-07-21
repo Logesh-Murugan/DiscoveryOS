@@ -1,6 +1,9 @@
 import os
+import logging
 from typing import Protocol
 from abc import ABC, abstractmethod
+
+logger = logging.getLogger(__name__)
 
 
 class LLMClient(ABC):
@@ -123,6 +126,10 @@ def get_llm_client() -> LLMClient:
     """
     provider = os.getenv("LLM_PROVIDER", "ollama").lower()
 
+    # --- Diagnostic log: shows which provider is resolved at runtime ---
+    print(f"[LLM_CLIENT] get_llm_client() called — LLM_PROVIDER='{provider}'")
+    logger.info("get_llm_client() runtime check: LLM_PROVIDER='%s'", provider)
+
     if provider == "ollama":
         base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
         return OllamaClient(base_url=base_url)
@@ -133,3 +140,4 @@ def get_llm_client() -> LLMClient:
         return GroqClient(api_key=api_key)
     else:
         raise ValueError(f"Unknown LLM_PROVIDER: {provider}. Must be 'ollama' or 'groq'")
+

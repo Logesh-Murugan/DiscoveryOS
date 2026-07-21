@@ -1,3 +1,10 @@
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load .env from project root BEFORE any other imports touch os.getenv()
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=_PROJECT_ROOT / ".env", override=True)
+
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
