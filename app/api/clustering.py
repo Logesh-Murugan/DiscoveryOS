@@ -3,6 +3,7 @@
 from typing import List
 
 from fastapi import APIRouter
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 from app.agents.clustering_agent import cluster
@@ -28,7 +29,7 @@ async def cluster_pain_points(pain_points: List[PainPointUnit]) -> JSONResponse:
     try:
         themes: List[Theme] = cluster(pain_points)
         themes_json = [theme.model_dump() for theme in themes]
-        return JSONResponse({"status": "success", "themes": themes_json})
+        return JSONResponse(content=jsonable_encoder({"status": "success", "themes": themes_json}))
     except Exception as e:
         return JSONResponse(
             {"status": "error", "message": str(e)},

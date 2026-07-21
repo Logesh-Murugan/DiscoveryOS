@@ -3,6 +3,7 @@
 from typing import Dict, List, Optional
 
 from fastapi import APIRouter
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
@@ -53,7 +54,7 @@ async def score_themes(request: ScoreRequest) -> JSONResponse:
             segment_weights=request.segment_weights,
         )
         scored_json = [theme.model_dump() for theme in scored]
-        return JSONResponse({"status": "success", "themes": scored_json})
+        return JSONResponse(content=jsonable_encoder({"status": "success", "themes": scored_json}))
     except Exception as e:
         return JSONResponse(
             {"status": "error", "message": str(e)},

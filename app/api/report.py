@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import List
 
 from fastapi import APIRouter, File, UploadFile
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 from app.agents.ingestion_agent import ingest
@@ -115,13 +116,15 @@ async def generate_pipeline_report(
             logger.warning("Failed to store report data for Q&A: %s", e)
 
         return JSONResponse(
-            {
-                "status": "success",
-                "report": report_obj.model_dump(),
-                "themes": [theme.model_dump() for theme in scored_themes],
-                "pain_points": [pp.model_dump() for pp in pain_points],
-                "markdown": report_md,
-            }
+            content=jsonable_encoder(
+                {
+                    "status": "success",
+                    "report": report_obj.model_dump(),
+                    "themes": [theme.model_dump() for theme in scored_themes],
+                    "pain_points": [pp.model_dump() for pp in pain_points],
+                    "markdown": report_md,
+                }
+            )
         )
 
     finally:
