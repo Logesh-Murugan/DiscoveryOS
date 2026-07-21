@@ -4,6 +4,10 @@ pydantic>=2.6.0
 requests>=2.31.0
 groq>=0.4.0
 sentence-transformers>=2.5.0
+# torch is installed in a separate Dockerfile layer (CPU-only wheel) to avoid the 500MB+ GPU build.
+# This entry ensures pip uses the same CPU index and doesn't re-fetch the GPU wheel.
+torch --index-url https://download.pytorch.org/whl/cpu
+
 hdbscan>=0.8.33
 scikit-learn>=1.4.0
 numpy>=1.26.0
