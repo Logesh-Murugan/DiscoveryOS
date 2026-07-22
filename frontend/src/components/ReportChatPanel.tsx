@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Bot, User, Loader2, Sparkles, AlertCircle } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 interface ChatMessage {
   id: string;
@@ -54,7 +55,7 @@ export const ReportChatPanel: React.FC<ReportChatPanelProps> = ({ reportId }) =>
     setChatError(null);
 
     try {
-      const response = await fetch(`http://localhost:8000/report/${reportId}/ask`, {
+      const response = await fetch(`${API_BASE_URL}/report/${reportId}/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: text }),

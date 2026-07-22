@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Upload, FileText, CheckCircle2, Loader2, AlertCircle, X, Sparkles, Layers } from 'lucide-react';
 import { useReport } from '../context/ReportContext';
 import type { ReportResponse } from '../types';
+import { API_BASE_URL } from '../config';
 
 const STAGES = [
   { id: 'ingest', label: 'Ingesting sources', desc: 'Parsing raw .csv and .txt feedback files...' },
@@ -80,7 +81,7 @@ export const IngestionScreen: React.FC = () => {
     });
 
     try {
-      const response = await fetch('http://localhost:8000/report/generate', {
+      const response = await fetch(`${API_BASE_URL}/report/generate`, {
         method: 'POST',
         body: formData,
       });
@@ -104,7 +105,7 @@ export const IngestionScreen: React.FC = () => {
     } catch (err: any) {
       setErrorMsg({
         stage: 'Network/Server',
-        message: err.message || 'Failed to connect to DiscoveryOS backend at http://localhost:8000.',
+        message: err.message || `Failed to connect to DiscoveryOS backend at ${API_BASE_URL}.`,
       });
       setIsProcessing(false);
     }
